@@ -1,3 +1,5 @@
+
+
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
 const data = [
@@ -85,7 +87,29 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+{
+  title: " My first two months in Lambda School",
+  date: "Sep 4th, 2019",
+  firstParagraph: `Import Article.less from the correct path into index.less (follow the example for Header.less if you’re not sure how to write the correct path)
+  * Follow the instructions found in the Articles.js file to complete the JavaScript functionality and add the components to the DOM.`,
+  secondParagraph: `Import Article.less from the correct path into index.less (follow the example for Header.less if you’re not sure how to write the correct path)
+  * Follow the instructions found in the Articles.js file to complete the JavaScript functionality and add the components to the DOM.`,
+  thirdParagraph: `Import Article.less from the correct path into index.less (follow the example for Header.less if you’re not sure how to write the correct path)
+  * Follow the instructions found in the Articles.js file to complete the JavaScript functionality and add the components to the DOM.`
+},
+{
+  title: " My first four  months in Lambda School",
+  date: "Nov 4th, 2019",
+  firstParagraph: `Import Article.less from the correct path into index.less (follow the example for Header.less if you’re not sure how to write the correct path)
+  * Follow the instructions found in the Articles.js file to complete the JavaScript functionality and add the components to the DOM.`,
+  secondParagraph: `Import Article.less from the correct path into index.less (follow the example for Header.less if you’re not sure how to write the correct path)
+  * Follow the instructions found in the Articles.js file to complete the JavaScript functionality and add the components to the DOM.`,
+  thirdParagraph: `Import Article.less from the correct path into index.less (follow the example for Header.less if you’re not sure how to write the correct path)
+  * Follow the instructions found in the Articles.js file to complete the JavaScript functionality and add the components to the DOM.`
+}
+
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -98,6 +122,60 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+  */
+
+ function articleMaker(settings) {
+
+  const  {title, date, firstParagraph, secondParagraph, thirdParagraph} = settings;
+  
+
+  const divArticle =  document.querySelector(".articles");
+
+  const divCont = document.createElement("div");
+  divCont.setAttribute("class", "article");
+  divCont.classList.add("artcle-open");
+
+  const h = document.createElement("h2");
+  h.textContent = title;
+
+  const dateCont = document.createElement("p");
+  dateCont.textContent = date;
+
+  const p1 = document.createElement("p");
+  p1.textContent = firstParagraph;
+
+  const p2 = document.createElement("p");
+  p2.textContent = secondParagraph;
+
+  const p3 = document.createElement("p");
+  p3.textContent = thirdParagraph;
+
+
+
+  const span = document.createElement("span");
+  span.setAttribute("class",'expandButton');
+  span.textContent = "show";
+  span.style.border = " 2px solid green";
+  span.style.margin = "3px";
+  span.addEventListener('click',() => {
+    divCont.classList.toggle("article-open");
+   
+  });
+
+divArticle.appendChild(divCont);
+  divCont.appendChild(h);
+  divCont.appendChild(dateCont);
+  divCont.appendChild(p1);
+  divCont.appendChild(p2);
+  divCont.appendChild(p3);
+  divCont.appendChild(span);
+  
+  return  divArticle;
+  
+}
+ 
+const articles = data.map(articleMaker);
+ /*
 
   Hint: You will need to use createElement more than once here!
 
